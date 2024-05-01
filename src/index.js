@@ -4,7 +4,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Navbar from './components/Navbar';
+import Anime from './pages/Anime';
+import Character from './pages/Character';
 import reportWebVitals from './reportWebVitals';
+import Favorites from './pages/Favorites';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +16,9 @@ root.render(
       <Routes>
         <Route path='/' element={<Navbar />}>
           <Route index={true} element={<App />}></Route>
+          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route path="/anime" element={<Anime />}></Route>
+          <Route path="/character" element={<Character />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -8,7 +8,8 @@ const Navbar = () => {
                 <h1>Shoukai</h1>
                 <div id="navbar-links">
                     <Link className="nav-link" to="/">Home</Link>
-                    <Link className="nav-link" to="/discover">Discover</Link>
+                    <Link className="nav-link" to="/anime">Anime</Link>
+                    <Link className="nav-link" to="/character">Character</Link>
                     <Link className="nav-link" to="/favorites">Favorites</Link>
                 </div>
             </div>
