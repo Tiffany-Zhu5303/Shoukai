@@ -15,7 +15,8 @@ const Anime = () => {
 
   const makeQuery = () => {
     let query = `https://api.jikan.moe/v4/random/anime`;
-    callAPI(query).catch(alert('Something went wrong with that query, try again'));
+    try{callAPI(query)}
+    catch{(alert('Something went wrong with that query, try again'))};
   }
 
   const callAPI = async(query) =>{
@@ -23,40 +24,38 @@ const Anime = () => {
     let json = await response.json();
 
     while(json.data.rating == "Rx - Hentai"){
+      console.log("oops", json);
       response = await fetch(query);
       json = await response.json();
-      console.log(json);
     }
 
-    if(filters.length > 0){
-      console.log('we r starting with ', json);
-      console.log('yes there is one so u better check')
-      await filters.map(async(filter) => {
-        console.log('checking!');
-        if(filter.name == 'Episodes'){
-          console.log('we are filtering episodes');
-          while(json.data.episodes == filter.value || json.data.rating == "Rx - Hentai"){
-            console.log('got one');
-            response = await fetch(query);
-            json = await response.json();
-            console.log('this is new right?', json);
-          }
-        }else if (filter.name == 'Status'){
-          while(json.data.status == filter.value || json.data.rating == "Rx - Hentai"){
-            response = await fetch(query);
-            json = await response.json();
-            console.log(json);
-          }
-        }else if (filter.name == 'AvgScore'){
-          while(json.data.score == filter.value || json.data.rating == "Rx - Hentai"){
-            response = await fetch(query);
-            json = await response.json();
-            console.log(json);
-          }
-        }});
-
-        console.log('doneeeee?')
-    }
+    // if(filters.length > 0){
+    //   console.log('we r starting with ', json);
+    //   console.log('yes there is one so u better check')
+    //   await filters.map(async(filter) => {
+    //     console.log('checking!');
+    //     if(filter.name == 'Episodes'){
+    //       console.log('we are filtering episodes');
+    //       while(json.data.episodes == filter.value || json.data.rating == "Rx - Hentai"){
+    //         console.log('got one');
+    //         response = await fetch(query);
+    //         json = await response.json();
+    //         console.log('this is new right?', json);
+    //       }
+    //     }else if (filter.name == 'Status'){
+    //       while(json.data.status == filter.value || json.data.rating == "Rx - Hentai"){
+    //         response = await fetch(query);
+    //         json = await response.json();
+    //         console.log(json);
+    //       }
+    //     }else if (filter.name == 'AvgScore'){
+    //       while(json.data.score == filter.value || json.data.rating == "Rx - Hentai"){
+    //         response = await fetch(query);
+    //         json = await response.json();
+    //         console.log(json);
+    //       }
+    //     }});
+    // }
 
     if (json.data.title == null || json.data.images.jpg.image_url == null){
       alert("Something went wrong with that query, try again");
