@@ -7,15 +7,22 @@
     border-radius: 5px;
 }
 
+#discover-button:hover {
+  background-color: white;
+  color: #322E18;
+  border: 1px #322E18 solid;
+}
+
+#empty-history {
+    font-size: medium;
+}
+
 .anime-page {
     background-color: #FFD4CA;
     color: #322E18;
     display: flex;
-    flex-direction: column;
     font-size: xx-large;
     height: 90vh;
-    display: flex;
-    flex-direction: row;
     align-items: center;
     overflow: hidden;
 }
@@ -45,6 +52,7 @@
 .history-container {
     background-color: #6A0136;
     border-color: black;
+    border-radius: 1%;
     border-width: 1em;
     display: flex;
     flex-direction: column;

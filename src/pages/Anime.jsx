@@ -23,7 +23,7 @@ const Anime = () => {
     let response = await fetch(query);
     let json = await response.json();
 
-    while(json.data.rating == "Rx - Hentai"){
+    while(json.data.rating === "Rx - Hentai"){
       console.log("oops", json);
       response = await fetch(query);
       json = await response.json();
@@ -137,9 +137,8 @@ const Anime = () => {
   return (
     <div className='anime-page'>
       <div className='main-container'>
-        <h2>Find a new anime to binge!</h2>
-        {animeName ? (<h3>{animeName}</h3>) : (<div> </div>)}
-        {image ? (<img className='characterImg' src={image} alt="character Image"/>
+        {animeName ? (<h3>{animeName}</h3>) : (<h2>Find a new anime to binge!</h2>)}
+        {image ? (<img className='animeImg' src={image} alt={animeName}/>
       ) : (<div></div>)}
         <div className='attributes-container'>
         {/*   {genres.length > 0 ? (genres.map((genre)=> (<button className='attribute-button' onClick={banGenre}>Genre: {genre.name}</button>))) : (<div></div>)} */}

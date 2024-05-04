@@ -4,7 +4,7 @@ import "../pages/Anime.css";
 const History = ({animes}) => {
     return (
         <div className="history-section">
-            <h2>History</h2>
+            <h4>History</h4>
             {animes && animes.length > 0 ? (
             animes.map((anime) => (
                 <div className="history-item" key={anime.name}>
@@ -16,7 +16,7 @@ const History = ({animes}) => {
                     <p className="anime-title">{anime.name}</p>
                 </div>
                 )   
-            )) : (<div></div>)}
+            )) : (<div id="empty-history">Nothing yet!</div>)}
         </div>
     )
 }
