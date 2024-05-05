@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import CharCard from "../components/CharCard";
 import "./Character.css";
 
 const Character = () => {
@@ -23,19 +24,12 @@ const Character = () => {
 
     return (
         <div className="character-page">
+            {characterOne && characterTwo ? <h1>{characterOne.name} or {characterTwo.name}?</h1> : null}
             {characterOne && characterTwo ? <div className="characters">
-                <div id="character-one" className="character-card">
-                    <h2 className="char-name">{characterOne.name}</h2> 
-                    {characterOne.name_kanji ? <h3 className="char-name">({characterOne.name_kanji})</h3> : null}
-                    <img src={characterOne.images.jpg.image_url} alt={"image of " + characterOne.name}/>
-                    {characterOne.about ? <p>{characterOne.about}</p> : <p>No info found on {characterOne.name}</p>}
-                </div>
-                <div id="character-two" className="character-card">
-                    <h2 className="char-name">{characterTwo.name}</h2>
-                    {characterTwo.name_kanji ? <h3 className="char-name">({characterTwo.name_kanji})</h3> : null}
-                    <img src={characterTwo.images.jpg.image_url} alt={"image of " + characterTwo.name}/>
-                    {characterTwo.about ? <p>{characterTwo.about}</p> : <p>No info found on {characterTwo.name}</p>}
-                </div>
+                <CharCard name={characterOne.name} name_kanji={characterOne.name_kanji} 
+                image_url={characterOne.images.jpg.image_url} about={characterOne.about} />
+                <CharCard name={characterTwo.name} name_kanji={characterTwo.name_kanji} 
+                image_url={characterTwo.images.jpg.image_url} about={characterTwo.about} />
             </div> : <div id="starting-characters">
             
             <h1 id="h1-fave">Choose your favorites!</h1>
