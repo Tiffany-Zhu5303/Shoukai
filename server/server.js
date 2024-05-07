@@ -4,10 +4,8 @@ import express from 'express';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 const PORT = 3000;
-
 const server = express();
 
-// Uncomment these as part of Step 3!
 const uri = 'mongodb+srv://Tz02:Hunter695!@atlascluster.s3gh93l.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 await client.connect();
