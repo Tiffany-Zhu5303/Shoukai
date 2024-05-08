@@ -10,6 +10,11 @@
   width: auto;
 }
 
+#home-title {
+  color:#C33C54;
+
+}
+
 #char-button {
   margin-left: 1em;
 }
@@ -18,23 +23,24 @@
   width: 10em;
   height: 4em;
   font-size: large;
-  background-color: #6A0136;
+  background-color: #C33C54;
   text-decoration: none;
-  color: white;
+  color: #F7EDE2;
   border: none;
   border-radius: 1em;
   text-align: center;
+  margin-top: 1em;
 }
 
 .options-button:hover {
-  background-color: white;
-  color: #322E18;
-  border: 1px #322E18 solid;
+  background-color: #F7EDE2;
+  color: #CF6377;
+  border: 1px #CF6377 solid;
 }
 
 .home-page {
   background-color: #FFD4CA;
-  color: #322E18;
+  color: #CF6377;
   display: flex;
   flex-direction: column;
   font-size: xx-large;
@@ -43,8 +49,8 @@
 }
 
 .navbar {
-  background-color: #A37A74;
-  color: #322E18;
+  background-color: #CF6377;
+  color: #F7EDE2;
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -54,10 +60,10 @@
 
 .nav-link {
   padding: 1em;
-  color: #322E18;
+  color: #F7EDE2;
   text-decoration: none;
 }
 
 .nav-link:hover {
-  color: white;
+  color: #2E382E;
 }

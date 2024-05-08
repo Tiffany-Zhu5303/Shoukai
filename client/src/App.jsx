@@ -5,7 +5,7 @@ const App = () => {
 
   return (
     <div className='home-page'>
-      <h1>Find something new!</h1>
+      <h1 id="home-title">Find something new!</h1>
       <p>Discover a new anime to binge or find a new favorite charcter</p>
       <div id="home-buttons">
         <Link to="/anime" className="options-button"><p id="start-text">Anime</p></Link>

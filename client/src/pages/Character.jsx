@@ -18,12 +18,11 @@ const Character = () => {
         return json;
     }
 
-    const callAPI = async(query) =>{
+    const callAPI = async(query) => {
         let response = await fetch(query);
         let jsonOne = await response.json();
         response = await fetch(query);
         let jsonTwo = await response.json();
-        console.log(jsonOne.data);
         let animesOne = await getAnime(jsonOne.data);
         let animesTwo = await getAnime(jsonTwo.data);
         setCharacterOne({...jsonOne.data, animes: animesOne});
@@ -35,9 +34,9 @@ const Character = () => {
             {characterOne && characterTwo ? <h1>{characterOne.name} or {characterTwo.name}?</h1> : null}
             {console.log(characterOne, characterTwo)}
             {characterOne && characterTwo ? <div className="characters">
-                <CharCard name={characterOne.name} name_kanji={characterOne.name_kanji} 
+                <CharCard id={characterOne.mal_id} name={characterOne.name} name_kanji={characterOne.name_kanji} 
                 image_url={characterOne.images.jpg.image_url} about={characterOne.about}/>
-                <CharCard name={characterTwo.name} name_kanji={characterTwo.name_kanji} 
+                <CharCard id={characterTwo.mal_id} name={characterTwo.name} name_kanji={characterTwo.name_kanji} 
                 image_url={characterTwo.images.jpg.image_url} about={characterTwo.about}/>
             </div> : <div id="starting-characters">
             
@@ -45,7 +44,7 @@ const Character = () => {
             <h4>Add your favorites by clicking on the characters</h4>
             <button className="next-button" id="start-button" onClick={makeQuery}>Start</button>
             </div>}
-            {characterOne && characterTwo ? <button className="next-button" onClick={makeQuery}>Next character!</button> : null}
+            {characterOne && characterTwo ? <button className="next-button" onClick={makeQuery}>Shuffle !</button> : null}
         </div>
     );
 };
