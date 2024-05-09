@@ -8,6 +8,7 @@ import Anime from './pages/Anime';
 import Character from './pages/Character';
 import reportWebVitals from './reportWebVitals';
 import Favorites from './pages/Favorites';
+import AnimeInfo from './pages/AnimeInfo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
           <Route path="/favorites" element={<Favorites />}></Route>
           <Route path="/anime" element={<Anime />}></Route>
           <Route path="/character" element={<Character />}></Route>
+          <Route path="/anime/:id" element={<AnimeInfo />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Anime.css';
 import History from '../components/History';
 
 const Anime = () => {
   const [image, setImage] = useState("");
   const [animeName, setAnimeName] = useState("");
-/*   const [genres, setGenres] = useState([]); */
+  const [genres, setGenres] = useState([]); 
   const [episodes, setEpisodes] = useState(null);
   const [avgScore, setAvgScore] = useState(null);
   const [status, setStatus] = useState(null);
@@ -29,33 +30,33 @@ const Anime = () => {
       json = await response.json();
     }
 
-    // if(filters.length > 0){
-    //   console.log('we r starting with ', json);
-    //   console.log('yes there is one so u better check')
-    //   await filters.map(async(filter) => {
-    //     console.log('checking!');
-    //     if(filter.name == 'Episodes'){
-    //       console.log('we are filtering episodes');
-    //       while(json.data.episodes == filter.value || json.data.rating == "Rx - Hentai"){
-    //         console.log('got one');
-    //         response = await fetch(query);
-    //         json = await response.json();
-    //         console.log('this is new right?', json);
-    //       }
-    //     }else if (filter.name == 'Status'){
-    //       while(json.data.status == filter.value || json.data.rating == "Rx - Hentai"){
-    //         response = await fetch(query);
-    //         json = await response.json();
-    //         console.log(json);
-    //       }
-    //     }else if (filter.name == 'AvgScore'){
-    //       while(json.data.score == filter.value || json.data.rating == "Rx - Hentai"){
-    //         response = await fetch(query);
-    //         json = await response.json();
-    //         console.log(json);
-    //       }
-    //     }});
-    // }
+    if(filters.length > 0){
+      console.log('we r starting with ', json);
+      console.log('yes there is one so u better check')
+      await filters.map(async(filter) => {
+        console.log('checking!');
+        if(filter.name == 'Episodes'){
+          console.log('we are filtering episodes');
+          while(json.data.episodes == filter.value || json.data.rating == "Rx - Hentai"){
+            console.log('got one');
+            response = await fetch(query);
+            json = await response.json();
+            console.log('this is new right?', json);
+          }
+        }else if (filter.name == 'Status'){
+          while(json.data.status == filter.value || json.data.rating == "Rx - Hentai"){
+            response = await fetch(query);
+            json = await response.json();
+            console.log(json);
+          }
+        }else if (filter.name == 'AvgScore'){
+          while(json.data.score == filter.value || json.data.rating == "Rx - Hentai"){
+            response = await fetch(query);
+            json = await response.json();
+            console.log(json);
+          }
+        }});
+    }
 
     if (json.data.title == null || json.data.images.jpg.image_url == null){
       alert("Something went wrong with that query, try again");
@@ -73,7 +74,7 @@ const Anime = () => {
     }
 
     setImage(json.data.images.jpg.image_url);
-/*     setGenres(json.data.genres); */
+    setGenres(json.data.genres); 
     setEpisodes(json.data.episodes);
     setAvgScore(json.data.score);
     setStatus(json.data.status);
@@ -95,7 +96,7 @@ const Anime = () => {
     }
   }
 
-/*   const banGenre = () => {
+  const banGenre = () => {
     genres.map((genre) => {
       setFilters((genre) => [...genre, {
         name: 'Genre',
@@ -103,8 +104,8 @@ const Anime = () => {
       }])
     })
 
-    console.log(filter);
-  } */
+    console.log(filters);
+  }
 
   const banEpisodes = () => {
     setFilters((attributes) => [...attributes, {
@@ -138,10 +139,10 @@ const Anime = () => {
     <div className='anime-page'>
       <div className='main-container'>
         {animeName ? (<h3>{animeName}</h3>) : (<h2>Find a new anime to binge!</h2>)}
-        {image ? (<img className='animeImg' src={image} alt={animeName}/>
+        {image ? (<Link to={'/anime/'+animeName}><img className="anime-img" src={image} alt={animeName}/></Link>
       ) : (<div></div>)}
         <div className='attributes-container'>
-        {/*   {genres.length > 0 ? (genres.map((genre)=> (<button className='attribute-button' onClick={banGenre}>Genre: {genre.name}</button>))) : (<div></div>)} */}
+          {genres.length > 0 ? (genres.map((genre)=> (<button className='attribute-button' onClick={banGenre}>Genre: {genre.name}</button>))) : (<div></div>)}
           {episodes ? (<button className='attribute-button' onClick={banEpisodes}>Number of episodes: {episodes}</button>):(<div></div>)}
           {status ? (<button className='attribute-button' onClick={banStatus}>Status: {status}</button>):(<div></div>)}
           {avgScore ? (<button className='attribute-button' onClick={banAvgScore}>Average score: {avgScore}</button>):(<div></div>)}
