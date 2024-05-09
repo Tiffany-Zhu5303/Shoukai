@@ -30,6 +30,8 @@
 
 .anime-title {
     font-size: large;
+    color: white;
+    text-decoration: none;
 }
 
 .anime-img:hover {

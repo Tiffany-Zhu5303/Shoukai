@@ -35,12 +35,14 @@ const Anime = () => {
     if(json.title_english && (json.title !== json.title_english)){
       setPrevAnimes((prevAnimes) => [...prevAnimes, {
         name: json.title+' ('+json.title_english+')', 
-        image: json.images.jpg.image_url
+        image: json.images.jpg.image_url,
+        id: json.mal_id
       }])
     }else{
       setPrevAnimes((prevAnimes) => [...prevAnimes, {
         name: json.title, 
-        image: json.images.jpg.image_url
+        image: json.images.jpg.image_url,
+        id: json.mal_id
       }])
     }
   }
