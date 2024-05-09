@@ -1,0 +1,54 @@
+#favorite-title{
+    margin-top: 1em;
+    color: #CF6377;
+}
+
+.favorites-page {
+    background: hsla(349, 53%, 60%, 1);
+    background: linear-gradient(90deg, hsla(349, 53%, 60%, 1) 2%, hsla(31, 57%, 93%, 1) 94%);
+    background: -moz-linear-gradient(90deg, hsla(349, 53%, 60%, 1) 2%, hsla(31, 57%, 93%, 1) 94%);
+    background: -webkit-linear-gradient(90deg, hsla(349, 53%, 60%, 1) 2%, hsla(31, 57%, 93%, 1) 94%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CF6377", endColorstr="#F7EDE2", GradientType=1 );
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #CF6377 whitesmoke;
+}
+
+.favorite-display {
+    padding: 1em;
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+}
+
+.fave-card {
+    margin: 2em;
+    padding: 2em 4em;
+    border-radius: 1em;
+    border: 1px white dotted;
+    max-height: 70vh;
+}
+
+.fave-character-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fave-card:hover {
+    border: 1px white solid;
+    box-shadow: 0px 0px 40px 20px whitesmoke;
+    transform: scale(1.05, 1.05);
+}
+
+.fave-char-img{
+    border: 1px #CF6377 solid;
+    border-radius: 1em;
+}

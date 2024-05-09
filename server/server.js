@@ -22,12 +22,18 @@ server.use(cors());
 server.use(express.json());
 
 server.post('/addFavorite', async(req, res) => {
-  console.log("anything? ", req.body);
   const database = client.db("Shoukai");
   const collection = database.collection("Favorites");
   await collection.insertOne(req.body);
   res.send({});
 }); 
+
+server.get('/getFavorites', async(req, res) => {
+  const database = client.db("Shoukai");
+  const collection = database.collection("Favorites");
+  let result = await collection.find({}).toArray();
+  res.send(result);
+})
 
 server.get('/connection', async (req, res) => {
   const ping = await client.db('admin').command({ ping: 1 })

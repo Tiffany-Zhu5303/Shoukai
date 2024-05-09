@@ -39,7 +39,6 @@ const Character = () => {
                 <CharCard id={characterTwo.mal_id} name={characterTwo.name} name_kanji={characterTwo.name_kanji} 
                 image_url={characterTwo.images.jpg.image_url} about={characterTwo.about}/>
             </div> : <div id="starting-characters">
-            
             <h1 id="h1-fave">Choose your favorites!</h1>
             <h4>Add your favorites by clicking on the characters</h4>
             <button className="next-button" id="start-button" onClick={makeQuery}>Start</button>
