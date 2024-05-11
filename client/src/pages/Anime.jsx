@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimeContext } from '../components/Navbar';
+import heartIcon from "../assets/heart-icon.png"
 import './Anime.css';
 
 const Anime = () => {
@@ -71,9 +72,13 @@ const Anime = () => {
   return (
     <div className='anime-page'>
       {displayedAnime.anime && Object.keys(displayedAnime.anime).length > 0 ? 
-        <div className='main-container'>
-          {displayedAnime.anime.title && displayedAnime.anime.title_english? (<h3>{displayedAnime.anime.title} ({displayedAnime.anime.title_english})</h3>) 
-          : <h3>{displayedAnime.anime.title}</h3>}
+        <div className='main-container' key={displayedAnime.anime.mal_id}>
+          <div className='title-container'>
+            {displayedAnime.anime.title && displayedAnime.anime.title_english? (<h3>{displayedAnime.anime.title} ({displayedAnime.anime.title_english})</h3>) 
+            : <h3>{displayedAnime.anime.title}</h3>}
+            <img id="heart-icon" src={heartIcon} alt="heart icon to favorite anime" onClick={addFavorite}/>
+          </div>
+          
           {displayedAnime.anime.images.jpg ? <Link to={'/anime/'+displayedAnime.anime.mal_id}>
             <img className="anime-img" src={displayedAnime.anime.images.jpg.image_url} alt={displayedAnime.anime.title}/></Link>
           : <div></div>}
@@ -85,10 +90,7 @@ const Anime = () => {
             {displayedAnime.anime.score ? (<button className='attribute-button'>Average score: {displayedAnime.anime.score}</button>):(<div></div>)}
             {displayedAnime.anime.source ? (<button className='attribute-button'>Source: {displayedAnime.anime.source}</button>):(<div></div>)}
           </div>
-          <div className='buttons'>
-            <button className="anime-buttons" onClick={makeQuery}>Discover!</button>
-            <button className="anime-buttons" onClick={addFavorite}>Favorite</button>
-          </div>
+          <button className="anime-buttons" onClick={makeQuery}>Discover!</button>
         </div> : 
         <div className='main-container'>
           <h2>Find a new anime to binge!</h2>

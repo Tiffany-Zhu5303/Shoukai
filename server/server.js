@@ -32,7 +32,7 @@ server.post('/addFavorite', async(req, res) => {
       await collection.insertOne(req.body);
     }
   }else if(req.body.animeId){
-    const query = {characterId: req.body.characterId};
+    const query = {animeId: req.body.animeId};
     const exists = await collection.findOne(query);
 
     if(!exists){
