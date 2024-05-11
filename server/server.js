@@ -15,31 +15,40 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
   }
-});
+}); 
 await client.connect();
+const database = client.db("Shoukai");
+const favorites = database.collection("Favorites");
+const history = database.collection("History");
 
 server.use(cors());
 server.use(express.json());
 
+server.delete("/clearHistory", (req, res) => {
+  history.deleteMany();
+})
+
+server.delete("/clearFavorites", (req, res) => {
+  favorites.deleteMany();
+})
+
 server.post('/addFavorite/', async(req, res) => {
-  const database = client.db("Shoukai");
-  const collection = database.collection("Favorites");
   if(req.body.characterId){
     const query = {characterId: req.body.characterId};
-    const exists = await collection.findOne(query);
+    const exists = await favorites.findOne(query);
 
     if(!exists){
-      await collection.insertOne(req.body);
+      await favorites.insertOne(req.body);
       res.send({status: "Added to favorites!"})
     }else{
       res.send({status: "Already favorited!"})
     }
   }else if(req.body.animeId){
     const query = {animeId: req.body.animeId};
-    const exists = await collection.findOne(query);
+    const exists = await favorites.findOne(query);
 
     if(!exists){
-      await collection.insertOne(req.body);
+      await favorites.insertOne(req.body);
       res.send({status: "Added to favorites!"})
     }else{  
       res.send({status: "Already favorited!"})
@@ -50,28 +59,35 @@ server.post('/addFavorite/', async(req, res) => {
 }); 
 
 server.post('/addHistory', async(req, res) => {
-  const database = client.db("Shoukai");
-  const collection = database.collection("History");
   const query = {animeId: req.body.animeId};
-  const exists = await collection.findOne(query);
+  const exists = await history.findOne(query);
   if(!exists){
-    await collection.insertOne(req.body);
+    await history.insertOne(req.body);
   }
   
   res.send({});
 }); 
 
 server.get('/getHistory', async(req, res) => {
-  const database = client.db("Shoukai");
-  const collection = database.collection("History");
-  let result = await collection.find({}).toArray();
+  let result = await history.find({}).toArray();
   res.send(result);
 })
 
+server.get("/getAnime/:id", async(req, res) => {
+  const query = {animeId: req.params.id};
+  console.log(query)
+  const exists = await history.findOne(query);
+  console.log(exists);
+
+  if(exists){
+    res.send(exists);
+  }else{
+    res.send({status: "Not Found"});
+  }
+})
+
 server.get('/getFavorites', async(req, res) => {
-  const database = client.db("Shoukai");
-  const collection = database.collection("Favorites");
-  let result = await collection.find({}).toArray();
+  let result = await favorites.find({}).toArray();
   res.send(result);
 })
 

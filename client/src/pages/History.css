@@ -19,6 +19,7 @@
 .history-list {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
     height: 80vh;
     padding: 0em 1em;
 }
@@ -50,4 +51,20 @@
 
 .anime-title {
     color: #CF6377;
+}
+
+.clear-button {
+    margin: 1em;
+    background-color: #C33C54;
+    border: 1px #C33C54 solid;
+    font-size: medium;
+    color: white;
+    padding: 1em 2em;
+    border-radius: 5px;
+}
+
+.clear-button:hover {
+    background-color: gray;
+    border: 1px black solid;
+    cursor: pointer;
 }

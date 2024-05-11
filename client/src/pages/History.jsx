@@ -20,7 +20,15 @@ const History = () => {
         }
     
         getHistory();
-    }, [displayedAnime.anime])
+    }, [displayedAnime.anime]);
+
+    const clearHistory = () => {
+        fetch('http://localhost:3000/clearHistory', {
+            method: 'DELETE', 
+        }).then(alert("Cleared!"));
+
+        window.location.reload();
+    }
 
     return (
         <div className="history-page">
@@ -45,6 +53,7 @@ const History = () => {
                         }
                 ) : <div id="empty-history">Nothing yet!</div>}
             </div>
+            <button className="clear-button" onClick={clearHistory}>Clear</button>
         </div>
     )
 }

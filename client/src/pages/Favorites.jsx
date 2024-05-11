@@ -20,6 +20,14 @@ const Favorites = () => {
         getFavorites();
     }, [])
 
+    const clearFavorites = () => {
+        fetch('http://localhost:3000/clearFavorites', {
+            method: 'DELETE', 
+        }).then(alert("Cleared!"));
+
+        window.location.reload();
+    }
+
     return(
         <div className="favorites-page">
             <h1 id="favorite-title">Your favorites</h1>
@@ -43,6 +51,7 @@ const Favorites = () => {
 
                     : null}
             </div>
+            <button className="clear-button">Clear</button>
         </div>
     );
 };
