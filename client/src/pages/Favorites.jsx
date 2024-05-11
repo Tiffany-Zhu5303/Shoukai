@@ -34,7 +34,9 @@ const Favorites = () => {
                         );
                     }else if(favorites[item].type === "anime"){
                         return(
-                            <FaveCard />
+                            <FaveCard key={favorites[item]._id} id={favorites[item].animeId} name={favorites[item].animeName} 
+                            name_ENG={favorites[item].animeNameENG} image_url={favorites[item].animeImg} 
+                            type={favorites[item].type}/>
                         );
                     }
                 })

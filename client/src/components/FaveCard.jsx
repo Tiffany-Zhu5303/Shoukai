@@ -14,7 +14,9 @@ const FaveCard = (props) => {
                 <img className="fave-char-img" src={props.image_url} alt={props.name}/>
             </div> : 
             <div className="fave-anime-card">
-                
+                <h2 className="anime-name">{props.name}</h2>
+                {props.name_ENG ? <h3>({props.name_ENG})</h3> : null}
+                <img className="fave-anime-img" src={props.image_url} alt={props.name}/>
             </div>}
         </div>
     );
