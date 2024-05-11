@@ -72,8 +72,8 @@ const Anime = () => {
     <div className='anime-page'>
       {displayedAnime.anime && Object.keys(displayedAnime.anime).length > 0 ? 
         <div className='main-container'>
-          {displayedAnime.anime.title ? (<h3>{displayedAnime.anime.title}</h3>) : (null)}
-          {displayedAnime.anime.title_english ? <h4>({displayedAnime.anime.title_english})</h4> : null}
+          {displayedAnime.anime.title && displayedAnime.anime.title_english? (<h3>{displayedAnime.anime.title} ({displayedAnime.anime.title_english})</h3>) 
+          : <h3>{displayedAnime.anime.title}</h3>}
           {displayedAnime.anime.images.jpg ? <Link to={'/anime/'+displayedAnime.anime.mal_id}>
             <img className="anime-img" src={displayedAnime.anime.images.jpg.image_url} alt={displayedAnime.anime.title}/></Link>
           : <div></div>}

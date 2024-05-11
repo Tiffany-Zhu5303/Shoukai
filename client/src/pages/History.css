@@ -1,9 +1,9 @@
 #page-title {
-    color: white;
+    color: #CF6377;
 }
 
 .history-page {
-    background-color: #CF6377;
+    background-color: #FFD4CA;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +20,7 @@
     display: flex;
     flex-flow: row wrap;
     height: 80vh;
+    padding: 0em 1em;
 }
 
 .history-item {
@@ -29,8 +30,24 @@
     width: 20vw;
     padding: 1em;
     margin: 1em;
+    border: #CF6377 1px solid;
+    border-radius: 1em;
+}
+
+.history-item:hover {
+    box-shadow: 0px 0px 40px 20px #CF6377;
+    transform: scale(1.05, 1.05);
 }
 
 .history-image {
     transform: scale(0.75, 0.75);
+}
+
+.history-links {
+    text-decoration: none;
+    color: #CF6377;
+}
+
+.anime-title {
+    color: #CF6377;
 }

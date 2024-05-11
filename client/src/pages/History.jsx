@@ -28,20 +28,20 @@ const History = () => {
             <div className="history-list">
                 {history && Object.keys(history).length > 0 ? 
                     Object.keys(history).map((item) => 
-                        {
-                            {console.log("here's one", history[item])}
-                            return(
-                                <Link to={"/anime/"+history[item].animeId} key={history[item].animeId}>
-                                    <div className="history-item">
-                                        <img
-                                            className="history-image"
-                                            src={history[item].animeImg}
-                                            alt={history[item].animeImg}
-                                        />
-                                        <p className="anime-title">{history[item].animeName} {(history[item].animeNameENG)}</p>
-                                    </div>
-                                </Link>
-                            );
+                        {return(
+                            <Link className="history-links" to={"/anime/"+history[item].animeId} key={history[item].animeId}>
+                                <div className="history-item">
+                                    <img
+                                        className="history-image"
+                                        src={history[item].animeImg}
+                                        alt={history[item].animeImg}
+                                    />
+                                    {history[item].animeNameENG && [history[item].animeNameENG].length > 0 ? 
+                                    <p className="anime-title">{history[item].animeName} ({history[item].animeNameENG})</p>
+                                    : <p className="anime-title">{history[item].animeName}</p>}
+                                </div>
+                            </Link>
+                        );
                         }
                 ) : <div id="empty-history">Nothing yet!</div>}
             </div>

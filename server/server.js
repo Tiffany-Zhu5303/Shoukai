@@ -24,14 +24,33 @@ server.use(express.json());
 server.post('/addFavorite', async(req, res) => {
   const database = client.db("Shoukai");
   const collection = database.collection("Favorites");
-  await collection.insertOne(req.body);
+  if(req.body.characterId){
+    const query = {characterId: req.body.characterId};
+    const exists = await collection.findOne(query);
+
+    if(!exists){
+      await collection.insertOne(req.body);
+    }
+  }else if(req.body.animeId){
+    const query = {characterId: req.body.characterId};
+    const exists = await collection.findOne(query);
+
+    if(!exists){
+      await collection.insertOne(req.body);
+    }
+  }
   res.send({});
 }); 
 
 server.post('/addHistory', async(req, res) => {
   const database = client.db("Shoukai");
   const collection = database.collection("History");
-  await collection.insertOne(req.body);
+  const query = {animeId: req.body.animeId};
+  const exists = await collection.findOne(query);
+  if(!exists){
+    await collection.insertOne(req.body);
+  }
+  
   res.send({});
 }); 
 
