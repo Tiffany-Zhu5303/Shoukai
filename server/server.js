@@ -74,8 +74,7 @@ server.get('/getHistory', async(req, res) => {
 })
 
 server.get("/getAnime/:id", async(req, res) => {
-  const query = {animeId: req.params.id};
-  console.log(query)
+  const query = {animeId: parseInt(req.params.id)};
   const exists = await history.findOne(query);
   console.log(exists);
 
