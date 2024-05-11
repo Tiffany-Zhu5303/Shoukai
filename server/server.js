@@ -21,7 +21,7 @@ await client.connect();
 server.use(cors());
 server.use(express.json());
 
-server.post('/addFavorite', async(req, res) => {
+server.post('/addFavorite/', async(req, res) => {
   const database = client.db("Shoukai");
   const collection = database.collection("Favorites");
   if(req.body.characterId){
@@ -30,6 +30,9 @@ server.post('/addFavorite', async(req, res) => {
 
     if(!exists){
       await collection.insertOne(req.body);
+      res.send({status: "Added to favorites!"})
+    }else{
+      res.send({status: "Already favorited!"})
     }
   }else if(req.body.animeId){
     const query = {animeId: req.body.animeId};
@@ -37,9 +40,13 @@ server.post('/addFavorite', async(req, res) => {
 
     if(!exists){
       await collection.insertOne(req.body);
+      res.send({status: "Added to favorites!"})
+    }else{  
+      res.send({status: "Already favorited!"})
     }
+  }else{
+    res.send({status: "Failed to add to favorites"});
   }
-  res.send({});
 }); 
 
 server.post('/addHistory', async(req, res) => {

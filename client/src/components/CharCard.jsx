@@ -1,8 +1,8 @@
 import React from "react";
 
 const CharCard = (props) => {
-    const addFavorite = () => {
-        fetch('http://localhost:3000/addFavorite', {
+    const addFavorite = async() => {
+        await fetch(`http://localhost:3000/addFavorite`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -12,7 +12,7 @@ const CharCard = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            alert(data.status);
         })
     }
 
