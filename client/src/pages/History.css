@@ -1,0 +1,36 @@
+#page-title {
+    color: white;
+}
+
+.history-page {
+    background-color: #CF6377;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #CF6377 #F7EDE2 ;
+}
+
+.history-list {
+    display: flex;
+    flex-flow: row wrap;
+    height: 80vh;
+}
+
+.history-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    padding: 1em;
+    margin: 1em;
+}
+
+.history-image {
+    transform: scale(0.75, 0.75);
+}

@@ -1,11 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AnimeContext } from '../components/Navbar';
 import './Anime.css';
-import History from '../components/History';
 
 const Anime = () => {
-  const [prevAnimes, setPrevAnimes] = useState([]);
-  const [anime, setAnime] = useState([]);
+  const displayedAnime = useContext(AnimeContext);
+
+  useEffect(() => {
+    const addHistory = () => {
+      fetch('http://localhost:3000/addHistory', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ animeId: displayedAnime.anime.mal_id, animeName: displayedAnime.anime.title, animeNameENG: displayedAnime.anime.title_english, 
+            animeImg: displayedAnime.anime.images.jpg.image_url, animeGenres: displayedAnime.anime.genres, animeEpisodes: displayedAnime.anime.episodes, 
+            displayedAnimecore: displayedAnime.anime.score, displayedAnimeourece: displayedAnime.anime.source, animeInfo: displayedAnime.anime.synopsis, type: "anime"}),
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+      })
+    }
+
+    if(displayedAnime.anime && Object.keys(displayedAnime.anime).length > 0){
+      addHistory();
+    }
+    
+}, [displayedAnime.anime])
 
   const makeQuery = () => {
     let query = `https://api.jikan.moe/v4/random/anime`;
@@ -26,51 +48,52 @@ const Anime = () => {
       alert("Something went wrong with that query, try again");
     }else {
       console.log(json.data);
-      setAnime(json.data);
-      setHistory(json.data)
+      displayedAnime.setAnime(json.data);
     }
   }
 
-  const setHistory = (json) => {
-    if(json.title_english && (json.title !== json.title_english)){
-      setPrevAnimes((prevAnimes) => [...prevAnimes, {
-        name: json.title+' ('+json.title_english+')', 
-        image: json.images.jpg.image_url,
-        id: json.mal_id
-      }])
-    }else{
-      setPrevAnimes((prevAnimes) => [...prevAnimes, {
-        name: json.title, 
-        image: json.images.jpg.image_url,
-        id: json.mal_id
-      }])
-    }
+  const addFavorite = () => {
+    fetch('http://localhost:3000/addFavorite', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ animeId: displayedAnime.anime.mal_id, animeName: displayedAnime.anime.title, animeNameENG: displayedAnime.anime.title_english, 
+          animeImg: displayedAnime.anime.images.jpg.image_url, animeGenres: displayedAnime.anime.genres, animeEpisodes: displayedAnime.anime.episodes, 
+          displayedAnimecore: displayedAnime.anime.score, displayedAnimeourece: displayedAnime.anime.source, animeInfo: displayedAnime.anime.synopsis, type: "anime"}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
   }
 
   return (
     <div className='anime-page'>
-      {anime && Object.keys(anime).length > 0 ? 
-      <div className='main-container'>
-        {anime.title ? (<h3>{anime.title}</h3>) : (null)}
-        {anime.title_english ? <h4>({anime.title_english})</h4> : null}
-        {anime.images.jpg ? <Link to={'/anime/'+anime.mal_id}><img className="anime-img" src={anime.images.jpg.image_url} alt={anime.title}/></Link>
-        : <div></div>}
-        <div className='attributes-container'>
-          {anime.genres.length > 0 ? (anime.genres.map((genre)=> (<button className='attribute-button'>Genre: {genre.name}</button>))) : (<div></div>)}
-          {anime.episodes ? (<button className='attribute-button'>Number of episodes: {anime.episodes}</button>):(<div></div>)}
-          {anime.status ? (<button className='attribute-button'>Status: {anime.status}</button>):(<div></div>)}
-          {anime.score ? (<button className='attribute-button'>Average score: {anime.score}</button>):(<div></div>)}
-          {anime.source ? (<button className='attribute-button'>Source: {anime.source}</button>):(<div></div>)}
-        </div>
-        <button id="discover-button" onClick={makeQuery}>Discover!</button>
-      </div> : 
-      <div className='main-container'>
-        <h2>Find a new anime to binge!</h2>
-        <button id="discover-button" onClick={makeQuery}>Discover!</button>
-      </div>}
-      <div className='history-container'>
-        <History animes={prevAnimes}/>
-      </div>
+      {displayedAnime.anime && Object.keys(displayedAnime.anime).length > 0 ? 
+        <div className='main-container'>
+          {displayedAnime.anime.title ? (<h3>{displayedAnime.anime.title}</h3>) : (null)}
+          {displayedAnime.anime.title_english ? <h4>({displayedAnime.anime.title_english})</h4> : null}
+          {displayedAnime.anime.images.jpg ? <Link to={'/anime/'+displayedAnime.anime.mal_id}>
+            <img className="anime-img" src={displayedAnime.anime.images.jpg.image_url} alt={displayedAnime.anime.title}/></Link>
+          : <div></div>}
+          <div className='attributes-container'>
+            {displayedAnime.anime.genres.length > 0 ? (displayedAnime.anime.genres.map((genre)=> 
+              (<button className='attribute-button'>Genre: {genre.name}</button>))) : (<div></div>)}
+            {displayedAnime.anime.episodes ? (<button className='attribute-button'>Number of episodes: {displayedAnime.anime.episodes}</button>):(<div></div>)}
+            {displayedAnime.anime.status ? (<button className='attribute-button'>Status: {displayedAnime.anime.status}</button>):(<div></div>)}
+            {displayedAnime.anime.score ? (<button className='attribute-button'>Average score: {displayedAnime.anime.score}</button>):(<div></div>)}
+            {displayedAnime.anime.source ? (<button className='attribute-button'>Source: {displayedAnime.anime.source}</button>):(<div></div>)}
+          </div>
+          <div className='buttons'>
+            <button className="anime-buttons" onClick={makeQuery}>Discover!</button>
+            <button className="anime-buttons" onClick={addFavorite}>Favorite</button>
+          </div>
+        </div> : 
+        <div className='main-container'>
+          <h2>Find a new anime to binge!</h2>
+          <button className="anime-buttons" onClick={makeQuery}>Discover!</button>
+        </div>}
     </div>
   )
 }

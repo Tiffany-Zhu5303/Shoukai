@@ -32,8 +32,10 @@ const Favorites = () => {
                             name_kanji={favorites[item].characterNameJPN} image_url={favorites[item].characterImg} 
                             about={favorites[item].characterInfo} type={favorites[item].type}/>
                         );
-                    }else{
-                        console.log("what", favorites[item].type);
+                    }else if(favorites[item].type === "anime"){
+                        return(
+                            <FaveCard />
+                        );
                     }
                 })
 

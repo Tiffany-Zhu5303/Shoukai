@@ -28,6 +28,20 @@ server.post('/addFavorite', async(req, res) => {
   res.send({});
 }); 
 
+server.post('/addHistory', async(req, res) => {
+  const database = client.db("Shoukai");
+  const collection = database.collection("History");
+  await collection.insertOne(req.body);
+  res.send({});
+}); 
+
+server.get('/getHistory', async(req, res) => {
+  const database = client.db("Shoukai");
+  const collection = database.collection("History");
+  let result = await collection.find({}).toArray();
+  res.send(result);
+})
+
 server.get('/getFavorites', async(req, res) => {
   const database = client.db("Shoukai");
   const collection = database.collection("Favorites");

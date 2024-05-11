@@ -9,6 +9,7 @@ import Character from './pages/Character';
 import reportWebVitals from './reportWebVitals';
 import Favorites from './pages/Favorites';
 import AnimeInfo from './pages/AnimeInfo';
+import History from './pages/History';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
           <Route path="/anime" element={<Anime />}></Route>
           <Route path="/character" element={<Character />}></Route>
           <Route path="/anime/:id" element={<AnimeInfo />}></Route>
+          <Route path="history" element={<History />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
