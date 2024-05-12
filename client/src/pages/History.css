@@ -4,24 +4,23 @@
 
 .history-page {
     background-color: #FFD4CA;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 90vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: #CF6377 #F7EDE2 ;
+    scrollbar-color: #CF6377 #F7EDE2;
 }
 
 .history-list {
+    padding: 1em;
     display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
     flex-flow: row wrap;
-    justify-content: center;
-    height: 80vh;
-    padding: 0em 1em;
 }
 
 .history-item {

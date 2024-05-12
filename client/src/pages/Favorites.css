@@ -17,7 +17,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: #CF6377 whitesmoke;
+    scrollbar-color: #CF6377 #F7EDE2;
 }
 
 .favorite-display {

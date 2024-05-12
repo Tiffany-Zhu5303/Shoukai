@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.anime-page {
+.anime-page, .animeInfo-page {
     background-color: #FFD4CA;
     color: #C33C54;
     display: flex;
@@ -35,7 +35,7 @@
     color: #C33C54;
     border: 1px #C33C54 solid;
     cursor: pointer;
-  }
+}
 
 .anime-img:hover {
     border: 1px white solid;
@@ -69,7 +69,7 @@
     align-items: center;
 }
 
-.main-container {
+.main-container, .animeInfo{
     border-radius: 3%;
     height: 80vh;
     width: 100vw;
@@ -82,10 +82,26 @@
     align-content: space-between;
 }
 
+.animeInfo {
+    font-size: large;
+}
+
+.anime-title {
+    font-size: xx-large;
+}
+
 .attributes-container {
     padding: 1em;
     width: 50vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.default-size {
+    font-size: medium;
+}
+
+.trailer-video {
+    height: 100%;
 }

@@ -16,7 +16,8 @@ const Anime = () => {
           },
           body: JSON.stringify({ animeId: displayedAnime.anime.mal_id, animeName: displayedAnime.anime.title, animeNameENG: displayedAnime.anime.title_english, 
             animeImg: displayedAnime.anime.images.jpg.image_url, animeGenres: displayedAnime.anime.genres, animeEpisodes: displayedAnime.anime.episodes, 
-            displayedAnimecore: displayedAnime.anime.score, displayedAnimeourece: displayedAnime.anime.source, animeInfo: displayedAnime.anime.synopsis, type: "anime"}),
+            animeScore: displayedAnime.anime.score, animeSource: displayedAnime.anime.source, animeInfo: displayedAnime.anime.synopsis, 
+            animeTrailer: displayedAnime.anime.trailer.url, animeStatus: displayedAnime.anime.status, type: "anime"}),
       })
       .then(response => response.json())
       .then(data => {
@@ -61,7 +62,8 @@ const Anime = () => {
         },
         body: JSON.stringify({ animeId: displayedAnime.anime.mal_id, animeName: displayedAnime.anime.title, animeNameENG: displayedAnime.anime.title_english, 
           animeImg: displayedAnime.anime.images.jpg.image_url, animeGenres: displayedAnime.anime.genres, animeEpisodes: displayedAnime.anime.episodes, 
-          displayedAnimecore: displayedAnime.anime.score, displayedAnimeourece: displayedAnime.anime.source, animeInfo: displayedAnime.anime.synopsis, type: "anime"}),
+          animeScore: displayedAnime.anime.score, animeSource: displayedAnime.anime.source, animeInfo: displayedAnime.anime.synopsis, 
+          animeTrailer: displayedAnime.anime.trailer.url, animeStatus: displayedAnime.anime.status, type: "anime"}),
     })
     .then(response => response.json())
     .then(data => {
