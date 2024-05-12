@@ -18,15 +18,19 @@ const AnimeInfo = () => {
                 console.log("data", data);
                 setAnime(data);
 
-                if(data.animeGenres.length > 0){
+                let genres = "";
+                if(data.animeGenres){
                     for(const index in data.animeGenres){
-                        if(animeGenres.length === 0){
-                            setAnimeGenres(data.animeGenres[index].name);
+                        console.log(data.animeGenres[index].name);
+                        if(genres.length === 0){
+                            genres = data.animeGenres[index].name;
                         }else{
-                            setAnimeGenres(animeGenres + ", " + data.animeGenres[index].name);
+                            genres = genres + ", " + data.animeGenres[index].name;
                         }
                     }
                 }
+
+                setAnimeGenres(genres);
 
                 if(data.animeTrailer){
                     setVideo(data.animeTrailer.replace("watch?v=", "embed/"));

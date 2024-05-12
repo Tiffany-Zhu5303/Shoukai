@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+
 import FaveCard from "../components/FaveCard";
 import "./Favorites.css";
 
@@ -32,7 +33,7 @@ const Favorites = () => {
         <div className="favorites-page">
             <h1 id="favorite-title">Your favorites</h1>
             <div className="favorite-display">
-                {favorites ? Object.keys(favorites).map((item) => {
+                {favorites && Object.keys(favorites).length > 0 ? Object.keys(favorites).map((item) => {
                     {console.log(favorites[item])}
                     if(favorites[item].type === "character"){
                         return(
@@ -49,9 +50,9 @@ const Favorites = () => {
                     }
                 })
 
-                    : null}
+                    : <div>Nothing yet!</div>}
             </div>
-            <button className="clear-button">Clear</button>
+            <button className="clear-button" onClick={clearFavorites}>Clear</button>
         </div>
     );
 };
