@@ -15,6 +15,7 @@ const Character = () => {
     const getAnime = async(char) => {
         let response = await fetch(`https://api.jikan.moe/v4/characters/${char.mal_id}/anime`);
         let json = await response.json();
+        console.log("charAnime", json);
         return json;
     }
 
@@ -35,9 +36,9 @@ const Character = () => {
             {console.log(characterOne, characterTwo)}
             {characterOne && characterTwo ? <div className="characters">
                 <CharCard id={characterOne.mal_id} name={characterOne.name} name_kanji={characterOne.name_kanji} 
-                image_url={characterOne.images.jpg.image_url} about={characterOne.about}/>
+                image_url={characterOne.images.jpg.image_url} about={characterOne.about} animes={characterOne.animes.data}/>
                 <CharCard id={characterTwo.mal_id} name={characterTwo.name} name_kanji={characterTwo.name_kanji} 
-                image_url={characterTwo.images.jpg.image_url} about={characterTwo.about}/>
+                image_url={characterTwo.images.jpg.image_url} about={characterTwo.about} animes={characterTwo.animes.data}/>
             </div> : <div id="starting-characters">
             <h1 id="h1-fave">Choose your favorites!</h1>
             <h4>Add your favorites by clicking on the characters</h4>

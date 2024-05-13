@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.anime-page, .animeInfo-page {
+.anime-page, .animeInfo-page, .characterInfo-page {
     background-color: #FFD4CA;
     color: #C33C54;
     display: flex;
@@ -69,7 +69,7 @@
     align-items: center;
 }
 
-.main-container, .animeInfo{
+.main-container, .animeInfo, .characterInfo{
     border-radius: 3%;
     height: 80vh;
     width: 100vw;
@@ -82,7 +82,7 @@
     align-content: space-between;
 }
 
-.animeInfo {
+.animeInfo, .characterInfo {
     font-size: large;
 }
 

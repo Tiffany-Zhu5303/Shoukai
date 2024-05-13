@@ -7,7 +7,7 @@ const CharCard = (props) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({characterId: props.id, characterName: props.name, 
+            body: JSON.stringify({characterId: props.id, characterName: props.name, characterAnimes: props.animes,
                 characterNameJPN: props.name_kanji, characterInfo:props.about, characterImg: props.image_url, type: "character"}),
         })
         .then(response => response.json())

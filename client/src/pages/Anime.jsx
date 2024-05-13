@@ -67,7 +67,7 @@ const Anime = () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        alert(data.status);
     })
   }
 
@@ -81,7 +81,7 @@ const Anime = () => {
             <img id="heart-icon" src={heartIcon} alt="heart icon to favorite anime" onClick={addFavorite}/>
           </div>
           
-          {displayedAnime.anime.images.jpg ? <Link to={'/anime/'+displayedAnime.anime.mal_id}>
+          {displayedAnime.anime.images.jpg ? <Link to={'/anime/'+displayedAnime.anime.mal_id+"/history"}>
             <img className="anime-img" src={displayedAnime.anime.images.jpg.image_url} alt={displayedAnime.anime.title}/></Link>
           : <div></div>}
           <div className='attributes-container'>

@@ -3,18 +3,18 @@ import { useParams } from "react-router-dom";
 import "./Anime.css";
 
 const AnimeInfo = () => {
-    const {id} = useParams();
+    const {id, from} = useParams();
     const [anime, setAnime] = useState([]);
     const [animeGenres, setAnimeGenres] = useState("");
     const [video, setVideo] = useState("");
     
     useEffect(() => {
-        const getAnime = () => {
-            fetch(`http://localhost:3000/getAnime/${id}`, {
-                method: 'GET',
-            })
-            .then(response => response.json())
-            .then(data => {
+        const getAnime = async() => {
+            if(from === "history"){
+                const response = await fetch(`http://localhost:3000/getAnime/${id}`, {
+                    method: 'GET',
+                });
+                const data = await response.json()
                 console.log("data", data);
                 setAnime(data);
 
@@ -36,7 +36,40 @@ const AnimeInfo = () => {
                     setVideo(data.animeTrailer.replace("watch?v=", "embed/"));
                     console.log(data.animeTrailer.replace("watch?v=", "embed/"));
                 }
-            })
+            }else if (from === "favorite"){
+                const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
+                const data = await response.json();
+                console.log("data", data);
+                setAnime({
+                    animeName: data.data.title,
+                    animeNameENG: data.data.title_english,
+                    animeImg: data.data.images.jpg.image_url,
+                    animeEpisodes: data.data.episodes,
+                    animeScore: data.data.score,
+                    animeStatus: data.data.status,
+                    animeSource: data.data.source,
+                    animeInfo: data.data.synopsis
+                });
+
+                let genres = "";
+                if(data.data.genres){
+                    for(const index in data.data.genres){
+                        console.log(data.data.genres[index].name);
+                        if(genres.length === 0){
+                            genres = data.data.genres[index].name;
+                        }else{
+                            genres = genres + ", " + data.data.genres[index].name;
+                        }
+                    }
+                }
+
+                setAnimeGenres(genres);
+
+                if(data.data.trailer.url){
+                    setVideo(data.data.trailer.url.replace("watch?v=", "embed/"));
+                    console.log(data.data.trailer.url.replace("watch?v=", "embed/"));
+                }
+            }
         }
 
         getAnime();

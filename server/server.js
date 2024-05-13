@@ -85,6 +85,30 @@ server.get("/getAnime/:id", async(req, res) => {
   }
 })
 
+server.get("/getCharacter/:id", async(req, res) => {
+  const query = {characterId: parseInt(req.params.id)};
+  const exists = await favorites.findOne(query);
+  console.log(exists);
+
+  if(exists){
+    res.send(exists);
+  }else{
+    res.send({status: "Not Found"});
+  }
+})
+
+server.get("/getCharacterAnime/:id", async(req, res) => {
+  const query = {characterId: parseInt(req.params.id)};
+  const exists = await favorites.findOne(query);
+  console.log(exists);
+
+  if(exists){
+    res.send(exists);
+  }else{
+    res.send({status: "Not Found"});
+  }
+})
+
 server.get('/getFavorites', async(req, res) => {
   let result = await favorites.find({}).toArray();
   res.send(result);

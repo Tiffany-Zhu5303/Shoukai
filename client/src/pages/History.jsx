@@ -37,7 +37,7 @@ const History = () => {
                 {history && Object.keys(history).length > 0 ? 
                     Object.keys(history).map((item) => 
                         {return(
-                            <Link className="history-links" to={"/anime/"+history[item].animeId} key={history[item].animeId}>
+                            <Link className="history-links" to={"/anime/"+history[item].animeId+"/history"} key={history[item].animeId}>
                                 <div className="history-item">
                                     <img
                                         className="history-image"
