@@ -81,7 +81,7 @@ const AnimeInfo = () => {
             {anime ? <div className="animeInfo">
                 {anime.animeName && anime.animeNameENG? (<h3 className="anime-title">{anime.animeName} ({anime.animeNameENG})</h3>) 
                 : <h3 className="anime-title">{anime.animeName}</h3>}
-                {video ? <iframe className="trailer-video" src={video}></iframe> : <img src={anime.animeImg} alt={anime.animeName} />}
+                {video ? <iframe className="trailer-video" src={video} picture-in-picture allowFullScreen></iframe> : <img src={anime.animeImg} alt={anime.animeName} />}
                 {anime.animeEpisodes ? <p>Episodes: {anime.animeEpisodes}</p>: <p>Episodes: N/A</p>}
                 {anime.animeScore ? <p>Rating: {anime.animeScore}/10</p>: <p>Rating: N/A</p>}
                 {anime.animeStatus ? <p>Status: {anime.animeStatus}</p> : <p>Status: N/A</p>}
