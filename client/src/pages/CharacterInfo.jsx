@@ -18,6 +18,7 @@ const CharacterInfo = () => {
                 setCharacter(data);
                 setCharacterAnimes(data.characterAnimes)
             })
+            .catch(err => console.log(err));
         }
 
         getCharacter();

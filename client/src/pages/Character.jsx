@@ -13,21 +13,32 @@ const Character = () => {
     }
 
     const getAnime = async(char) => {
-        let response = await fetch(`https://api.jikan.moe/v4/characters/${char.mal_id}/anime`);
+        let response = await fetch(`https://api.jikan.moe/v4/characters/${char.mal_id}/anime`).catch(err => console.log(err));
         let json = await response.json();
         console.log("charAnime", json);
         return json;
     }
 
     const callAPI = async(query) => {
-        let response = await fetch(query);
-        let jsonOne = await response.json();
-        response = await fetch(query);
-        let jsonTwo = await response.json();
-        let animesOne = await getAnime(jsonOne.data);
-        let animesTwo = await getAnime(jsonTwo.data);
-        setCharacterOne({...jsonOne.data, animes: animesOne});
-        setCharacterTwo({...jsonTwo.data, animes: animesTwo});
+        try{
+            let responseOne = await fetch(query);
+            if(!responseOne.ok){
+                throw new Error("Network error!");
+            }
+            let jsonOne = await responseOne.json();
+            let responseTwo = await fetch(query).catch(err => console.log(err));
+            if(!responseTwo.ok){
+                throw new Error("Network error!");
+            }
+            
+            let jsonTwo = await responseTwo.json();
+            let animesOne = await getAnime(jsonOne.data);
+            let animesTwo = await getAnime(jsonTwo.data);
+            setCharacterOne({...jsonOne.data, animes: animesOne});
+            setCharacterTwo({...jsonTwo.data, animes: animesTwo});
+        }catch(error){
+            console.log("fetch issue: ", error);
+        }
     }
 
     return (

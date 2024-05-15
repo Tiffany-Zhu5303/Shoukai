@@ -16,6 +16,7 @@ const Favorites = () => {
                 setFavorites(data);
                 console.log("data", data);
             })
+            .catch(err => console.log(err));
         }
 
         getFavorites();
@@ -24,7 +25,8 @@ const Favorites = () => {
     const clearFavorites = () => {
         fetch('http://localhost:3000/clearFavorites', {
             method: 'DELETE', 
-        }).then(alert("Cleared!"));
+        }).then(alert("Cleared!"))
+        .catch(err => console.log(err));
 
         window.location.reload();
     }

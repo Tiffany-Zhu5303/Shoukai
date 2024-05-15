@@ -23,6 +23,7 @@ const Anime = () => {
       .then(data => {
           console.log(data);
       })
+      .catch(err => console.log(err))
     }
 
     if(displayedAnime.anime && Object.keys(displayedAnime.anime).length > 0){
@@ -69,6 +70,7 @@ const Anime = () => {
     .then(data => {
         alert(data.status);
     })
+    .catch(err => console.log(err))
   }
 
   return (

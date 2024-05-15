@@ -14,6 +14,7 @@ const CharCard = (props) => {
         .then(data => {
             alert(data.status);
         })
+        .catch(err => console.log(err));
     }
 
     return (

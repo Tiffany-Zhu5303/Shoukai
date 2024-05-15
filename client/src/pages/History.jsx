@@ -17,6 +17,7 @@ const History = () => {
                 setHistory(data);
                 console.log("history", data);
             })
+            .catch(err => console.log(err));
         }
     
         getHistory();
@@ -25,7 +26,8 @@ const History = () => {
     const clearHistory = () => {
         fetch('http://localhost:3000/clearHistory', {
             method: 'DELETE', 
-        }).then(alert("Cleared!"));
+        }).then(alert("Cleared!"))
+        .catch(err => console.log(err));
 
         window.location.reload();
     }
