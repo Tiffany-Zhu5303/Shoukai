@@ -1,5 +1,8 @@
 console.clear();
 
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 
@@ -8,7 +11,7 @@ import { MongoClient, ServerApiVersion } from 'mongodb';
 const PORT = 3000;
 const server = express();
 
-const uri = 'mongodb+srv://Tiffany:l4d0OApB8MVUxd0y@cluster0.a0hdevl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = `mongodb+srv://Tiffany:${process.env.REACT_APP_MONGODB_PASSWORD}@cluster0.a0hdevl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
