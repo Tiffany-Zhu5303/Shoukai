@@ -8,7 +8,7 @@ export default function Home() {
         <Link 
         href="/discover">
           <button className="px-8 py-4 mt-12 text-2xl">
-            Let's Go!
+            Let&apos;s Go!
           </button>
         </Link>
       </div>
