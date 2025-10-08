@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-lavender-blush w-full min-h-screen pt-[10vh] font-kanit;
+  }
+
+  h1 {
+    @apply text-3xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  button {
+    @apply bg-blush text-linen flex justify-center items-center rounded-xl text-center hover:bg-rose-red hover:text-linen border border-rose-red drop-shadow-md;
+  }
+}
+
+#main-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#home-buttons {
+  display: flex;
+  width: auto;
+}
+
+#home-title {
+  color:#C33C54;
+
+}
+
+#char-button {
+  margin-left: 1em;
+}
+
+.options-button {
+  width: 10em;
+  height: 4em;
+  font-size: large;
+  background-color: #C33C54;
+  text-decoration: none;
+  color: #F7EDE2;
+  border: none;
+  border-radius: 1em;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.options-button:hover {
+  background-color: #F7EDE2;
+  color: #CF6377;
+  border: 1px #CF6377 solid;
+}
+
+.home-page {
+  background-color: #FFD4CA;
+  color: #CF6377;
+  display: flex;
+  flex-direction: column;
+  font-size: xx-large;
+  height: 90vh;
+  padding: 5em 3em;
+}
+
+.navbar {
+  background-color: #CF6377;
+  color: #F7EDE2;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 1em;
+}
+
+.nav-link {
+  padding: 1em;
+  color: #F7EDE2;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #2E382E;
+}
