@@ -87,7 +87,7 @@ const Anime = () => {
               <Image 
               width={400}
               height={400}
-              className="p-8 rounded-xl" 
+              className="rounded-xl border-2 border-rose-red shadow-lg mt-8" 
               src={anime.images.jpg.large_image_url} 
               alt={anime.title}/>
             </Link>
