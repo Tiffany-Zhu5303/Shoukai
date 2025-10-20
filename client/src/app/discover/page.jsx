@@ -13,7 +13,7 @@ export default function DiscoverPage() {
                         <Link href="/anime" className="text-center">
                             <div className="absolute inset-0 bg-blush rounded-lg shadow-md" />
                             <motion.div
-                                whileHover={{ rotate: -25 }}
+                                whileHover={{ rotate: -10 }}
                                 transition={{ duration: 0.5 }}
                                 className="flex justify-center items-center origin-bottom-left"
                             >
@@ -33,7 +33,7 @@ export default function DiscoverPage() {
                         <Link href="/character" className="text-center">
                             <div className="absolute inset-0 bg-blush rounded-lg shadow-md" />
                             <motion.div
-                                whileHover={{ rotate: 25 }}
+                                whileHover={{ rotate: 10 }}
                                 transition={{ duration: 0.5 }}
                                 className="flex justify-center items-center origin-bottom-right">
                                 <Image 

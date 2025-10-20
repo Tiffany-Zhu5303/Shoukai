@@ -1,11 +1,13 @@
 "use client";
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AnimeContext } from '../context/AnimeProvider';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Anime = () => {
   const { anime, setAnime } = useContext(AnimeContext);
+  const [loading, setLoading] = useState(false);
 
 //   useEffect(() => {
 //     console.log(anime)
@@ -53,8 +55,13 @@ const Anime = () => {
 
   const makeQuery = () => {
     let query = `https://api.jikan.moe/v4/random/anime`;
-    try{callAPI(query)}
-    catch{(alert('Something went wrong with that query, try again'))};
+    try{
+      setLoading(true);
+      callAPI(query);
+    }
+    catch{
+      alert('Something went wrong with that query, try again');
+    }
   }
 
   const callAPI = async(query) =>{
@@ -69,6 +76,7 @@ const Anime = () => {
     if (json.data.title == null || json.data.images.jpg.image_url == null){
       alert("No title or image found, try again!");
     }else {
+      setLoading(false);
       console.log(json.data);
       setAnime(json.data);
     }
@@ -79,15 +87,15 @@ const Anime = () => {
       {anime && Object.keys(anime).length > 0 ? 
         <div className='flex flex-col justify-center items-center' key={anime.mal_id}>
           {anime.title && anime.title_english ? 
-          (<p className='text-4xl font-bold'>{anime.title_english}</p>) 
-          : <p className='text-4xl font-bold'>{anime.title}</p>}
+          (<p className='text-rose-red text-4xl font-bold'>{anime.title_english}</p>) 
+          : <p className='text-rose-red text-4xl font-bold'>{anime.title}</p>}
           
           {anime.images.jpg.image_url ? 
             <Link href={'/anime/'+anime.mal_id}>
               <Image 
               width={400}
               height={400}
-              className="rounded-xl border-2 border-rose-red shadow-lg mt-8" 
+              className="max-h-1/2 rounded-xl border border-rose-red shadow-lg mt-8" 
               src={anime.images.jpg.large_image_url} 
               alt={anime.title}/>
             </Link>
@@ -96,7 +104,8 @@ const Anime = () => {
         <div className='flex flex-col items-center'>
           <p className='text-4xl'>Find a new anime to binge!</p>
         </div>}
-        <button className="px-4 py-2 mt-8" onClick={makeQuery}>Discover!</button>
+        { loading ? <LoadingSpinner /> : 
+        <button className="px-4 py-2 mt-8" onClick={makeQuery}>Discover!</button> }
     </div>
   )
 }

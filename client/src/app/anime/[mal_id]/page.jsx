@@ -14,14 +14,14 @@ export default function AnimePage() {
                 <div className='flex justify-evenly w-full items-start' key={anime.mal_id}>
                     <div className='flex flex-col justify-start w-full px-8'>
                         {anime.title && anime.title_english ? 
-                        (<p className='text-4xl font-bold'>{anime.title_english}</p>) 
-                        : <p className='text-4xl font-bold'>{anime.title}</p>}
+                        (<p className='text-rose-red text-4xl font-bold'>{anime.title_english}</p>) 
+                        : <p className='text-rose-red text-4xl font-bold'>{anime.title}</p>}
                         
                         {anime.images.jpg.image_url ? 
                             <Image 
                             width={400}
                             height={400}
-                            className="mt-8 rounded-xl" 
+                            className="mt-8 rounded-xl border border-rose-red" 
                             src={anime.images.jpg.large_image_url} 
                             alt={anime.title}/>
                         : null}
