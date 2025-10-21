@@ -87,19 +87,32 @@ const Anime = () => {
       {anime && Object.keys(anime).length > 0 ? 
         <div className='flex flex-col justify-center items-center' key={anime.mal_id}>
           {anime.title && anime.title_english ? 
-          (<p className='text-rose-red text-4xl font-bold'>{anime.title_english}</p>) 
-          : <p className='text-rose-red text-4xl font-bold'>{anime.title}</p>}
-          
-          {anime.images.jpg.image_url ? 
-            <Link href={'/anime/'+anime.mal_id}>
-              <Image 
-              width={400}
-              height={400}
-              className="max-h-1/2 rounded-xl border border-rose-red shadow-lg mt-8" 
-              src={anime.images.jpg.large_image_url} 
-              alt={anime.title}/>
-            </Link>
-          : null}
+          (<p className='text-rose-red text-4xl font-bold mb-10'>{anime.title_english}</p>) 
+          : <p className='text-rose-red text-4xl font-bold mb-10'>{anime.title}</p>}
+
+          <div className='relative inline-block'>
+            {anime.images.jpg.image_url ? 
+              <Link href={'/anime/'+anime.mal_id}>
+                  <div className="relative">
+                    <div className="absolute flex justify-center items-center inset-0 opacity-0 transition-opacity duration-500 bg-linen/70 rounded-lg shadow-md z-10
+                    hover:opacity-100 hover:cursor-pointer hover:border-2 hover:border-rose-red">
+                      <p className='text-rose-red text-5xl font-bold'>More Info</p>
+                    </div>
+                    <Image 
+                    width={400}
+                    height={400}
+                    className="max-h-1/2 rounded-xl border border-rose-red shadow-lg" 
+                    src={anime.images.jpg.large_image_url} 
+                    alt={anime.title}/>
+                </div>
+              </Link> :
+              <Link href={'/anime/'+anime.mal_id}>
+                <div className="w-[400px] h-[500px] bg-rose-red/75 rounded-lg flex justify-center items-center hover:cursor-pointer">
+                  <p className='text-rose-red text-5xl font-bold'>More Info</p>
+                </div>
+              </Link> 
+            }
+          </div>
         </div> : 
         <div className='flex flex-col items-center'>
           <p className='text-4xl'>Find a new anime to binge!</p>
